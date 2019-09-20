@@ -38,20 +38,16 @@
           console.log('no metamask.')
         }
         ethereum.enable();
-        web3.eth.getAccounts(accounts => console.log(accounts[0]));
-        web3.eth.defaultAccount = web3.eth.accounts[0];
-        console.log(web3.eth.defaultAccount);
         web3.eth.getAccounts(function(err, accounts){
-           if (err != null) {
-              console.log(err)
-           }
-           else if (accounts.length === 0) {
-              console.log('MetaMask is locked')
-           }
-           else {
-              console.log('MetaMask is unlocked')
-           }
+          if (err != null) {
+            console.log(err)
+          } else if (accounts.length === 0) {
+            alert('MetaMask is locked. Please check your MetaMask extension.');
+          } else {
+            console.log('MetaMask is unlocked')
+          }
         });
+      web3.eth.defaultAccount = web3.eth.accounts[0];
       } else {
           // set the provider you want from Web3.providers
           alert('You do not have a ethereum backed browser.');
@@ -59,46 +55,45 @@
       }
       // web3.eth.defaultAccount = web3.eth.accounts[0];
       var CoursetroContract = web3.eth.contract([
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_fName",
-				"type": "string"
-			},
-			{
-				"name": "_age",
-				"type": "uint256"
-			}
-		],
-		"name": "setInstructor",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getInstructor",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	}
-]);
+      	{
+      		"constant": false,
+      		"inputs": [
+      			{
+      				"name": "_fName",
+      				"type": "string"
+      			},
+      			{
+      				"name": "_age",
+      				"type": "uint256"
+      			}
+      		],
+      		"name": "setInstructor",
+      		"outputs": [],
+      		"payable": false,
+      		"stateMutability": "nonpayable",
+      		"type": "function"
+      	},
+      	{
+      		"constant": true,
+      		"inputs": [],
+      		"name": "getInstructor",
+      		"outputs": [
+      			{
+      				"name": "",
+      				"type": "string"
+      			},
+      			{
+      				"name": "",
+      				"type": "uint256"
+      			}
+      		],
+      		"payable": false,
+      		"stateMutability": "view",
+      		"type": "function"
+      	}
+      ]);
       var Coursetro = CoursetroContract.at('0xa036C0eA8Fd96d992662588045b84F8FD52Bc852');
       console.log(Coursetro);
-
       Coursetro.getInstructor(function(error, result){
             if(!error)
                 {
@@ -110,7 +105,11 @@
         });
 
         $("#button").click(function() {
-            Coursetro.setInstructor($("#name").val(), $("#age").val());
+            Coursetro.setInstructor($("#name").val(), $("#age").val(), function(error, result){
+            if(!error)
+              console.log(JSON.stringify(result));
+            else
+              console.error(error);
         });
     </script>
 
