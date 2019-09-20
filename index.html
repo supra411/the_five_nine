@@ -33,6 +33,7 @@
         console.log('got metamask');
         web3 = new Web3(web3.currentProvider);
         web3.eth.defaultAccount = web3.eth.accounts[0];
+        console.log(web3.eth.defaultAccount);
       } else {
           // set the provider you want from Web3.providers
           alert('You do not have a ethereum backed browser.');
