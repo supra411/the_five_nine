@@ -37,6 +37,7 @@
         } else {
           console.log('no metamask.')
         }
+        web3.eth.getAccounts(accounts => console.log(accounts[0]));
         web3.eth.defaultAccount = web3.eth.accounts[0];
         console.log(web3.eth.defaultAccount);
         web3.eth.getAccounts(function(err, accounts){
