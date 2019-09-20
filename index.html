@@ -32,7 +32,7 @@
       // Mist, Metamask
         console.log('got metamask');
         web3 = new Web3(web3.currentProvider);
-        web3.eth.defaultAccount = web3.eth.accounts[0];
+        web3.eth.defaultAccount = '0x11568274239DA1517be58bcE9A762454E71ab232';
         console.log(web3.eth.defaultAccount);
         web3.eth.getAccounts(console.log);
       } else {
