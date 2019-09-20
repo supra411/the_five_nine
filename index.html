@@ -53,7 +53,6 @@
           alert('You do not have a ethereum backed browser.');
           web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
       }
-      // web3.eth.defaultAccount = web3.eth.accounts[0];
       var CoursetroContract = web3.eth.contract([
       	{
       		"constant": false,
@@ -92,26 +91,19 @@
       		"type": "function"
       	}
       ]);
-      var Coursetro = CoursetroContract.at('0xa036C0eA8Fd96d992662588045b84F8FD52Bc852');
+      var Coursetro = CoursetroContract.at('0xBfa8c8fB333efC4D556Fcd21106fCA71d18962CB');
       console.log(Coursetro);
-      Coursetro.getInstructor(function(error, result){
-            if(!error)
-                {
-                    $("#instructor").html(result[0]+' ('+result[1]+' years old)');
-                    console.log(result);
-                }
-            else
-                console.error(error);
-        });
-
-        $("#button").click(function() {
-            Coursetro.setInstructor($("#name").val(), $("#age").val(), function(error, result){
-            if(!error){
-               console.log(JSON.stringify(result));
-            } else {
-               console.error(error);
-            }
-        });
+      Coursetro.getInstructor(function(error, result) {
+        if(!error) {
+                $("#instructor").html(result[0]+' ('+result[1]+' years old)');
+                console.log(result);
+        } else {
+            console.error(error);
+        }
+      });
+      $("#button").click(function() {
+            Coursetro.setInstructor($("#name").val(), $("#age").val());
+      });
     </script>
 
 </body>
