@@ -106,10 +106,11 @@
 
         $("#button").click(function() {
             Coursetro.setInstructor($("#name").val(), $("#age").val(), function(error, result){
-            if(!error)
-              console.log(JSON.stringify(result));
-            else
-              console.error(error);
+            if(!error){
+               console.log(JSON.stringify(result));
+            } else {
+               console.error(error);
+            }
         });
     </script>
 
