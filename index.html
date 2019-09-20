@@ -104,10 +104,12 @@
       $("#button").click(function() {
             Coursetro.setInstructor($("#name").val(), $("#age").val(), function(error, result) {
               if(!error) {
-                console.log(result);
+                      $("#instructor").html(result[0]+' ('+result[1]+' years old)');
+                      console.log(result);
               } else {
-                console.error(error);
+                  console.error(error);
               }
+            });
       });
     </script>
 
