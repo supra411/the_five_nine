@@ -30,22 +30,26 @@
     <script>
       if (typeof web3 !== 'undefined') {
       // Mist, Metamask
-        console.log('got metamask');
-        console.log(web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0])));
+        console.log('got provider');
         web3 = new Web3(web3.currentProvider);
+        if (web3.currentProvider.isMetaMask === true) {
+          console.log('Got metamask')
+        } else {
+          console.log('no metamask.')
+        }
         web3.eth.defaultAccount = web3.eth.accounts[0];
         console.log(web3.eth.defaultAccount);
         web3.eth.getAccounts(function(err, accounts){
-             if (err != null) {
-                console.log(err)
-             }
-             else if (accounts.length === 0) {
-                console.log('MetaMask is locked')
-             }
-             else {
-                console.log('MetaMask is unlocked')
-             }
-          });
+           if (err != null) {
+              console.log(err)
+           }
+           else if (accounts.length === 0) {
+              console.log('MetaMask is locked')
+           }
+           else {
+              console.log('MetaMask is unlocked')
+           }
+        });
       } else {
           // set the provider you want from Web3.providers
           alert('You do not have a ethereum backed browser.');
