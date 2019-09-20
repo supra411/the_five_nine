@@ -102,7 +102,12 @@
         }
       });
       $("#button").click(function() {
-            Coursetro.setInstructor($("#name").val(), $("#age").val());
+            Coursetro.setInstructor($("#name").val(), $("#age").val(), function(error, result) {
+              if(!error) {
+                console.log(result);
+              } else {
+                console.error(error);
+              }
       });
     </script>
 
